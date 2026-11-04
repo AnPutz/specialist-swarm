@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wichtel Angebotszentrale</title>
+<title>Wichtel Bid Floor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
@@ -15,51 +15,42 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,sans-serif}
-header{display:flex;align-items:center;gap:16px;padding:14px 24px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#0d1730,#0a1020)}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#0d1730,#0a1020)}
 .logo{width:40px;height:40px;border-radius:10px;background:var(--red);display:grid;place-items:center;font-size:22px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.25)}
 .brand b{font-size:17px;letter-spacing:.2px}.brand div{color:var(--muted);font-size:12px}
-.kpis{margin-left:auto;display:flex;gap:10px}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;min-width:104px}
+#snd{margin-left:auto;padding:7px 12px}
+.kpis{margin-left:12px;display:flex;gap:10px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;min-width:100px}
 .kpi span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
 .kpi b{font:600 18px "JetBrains Mono",monospace;color:var(--gold)}
-main{display:grid;grid-template-columns:300px 1fr 300px;gap:14px;padding:14px;min-height:calc(100vh - 70px)}
+main{display:grid;grid-template-columns:260px 1fr 270px;gap:12px;padding:12px}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
 h2{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
-textarea{flex:1;min-height:260px;resize:vertical;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.4 "JetBrains Mono",monospace}
+textarea{flex:1;min-height:240px;resize:vertical;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.4 "JetBrains Mono",monospace}
 button,.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:9px 12px;font:600 13px Inter;cursor:pointer}
 button:hover{border-color:var(--gold)}
 button.primary{background:var(--gold);color:#1b1404;border-color:var(--gold)}
 button:disabled{opacity:.5;cursor:default}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 #phase{font-weight:600;color:var(--gold);min-height:20px}
-.floorwrap{overflow-x:auto}
-#floor{position:relative;height:640px;min-width:900px;border-radius:12px;background:
-  radial-gradient(circle at 50% 50%,rgba(232,182,76,.07),transparent 45%),
-  repeating-linear-gradient(0deg,transparent 0 39px,rgba(255,255,255,.025) 39px 40px),
-  repeating-linear-gradient(90deg,transparent 0 39px,rgba(255,255,255,.025) 39px 40px),#0c1427;border:1px solid var(--line)}
-#fx{position:absolute;inset:0;pointer-events:none;z-index:3}
-.st{position:absolute;width:172px;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 9px;z-index:2;transition:border-color .2s,box-shadow .2s}
-.st .top{display:flex;align-items:center;gap:7px}
-.st .ic{font-size:20px;width:28px;text-align:center}
-.st .nm{font-weight:600;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.st .rl{color:var(--muted);font-size:10.5px}
-.st .pill{margin-left:auto;font-size:9.5px;padding:2px 6px;border-radius:99px;background:#26324d;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.st .tx{margin-top:6px;height:30px;overflow:hidden;font:9.5px/1.3 "JetBrains Mono",monospace;color:#a9b6d3;word-break:break-word;display:flex;flex-direction:column;justify-content:flex-end}
-.st .bar{height:3px;background:#22304c;border-radius:2px;margin-top:5px;overflow:hidden}
-.st .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .15s}
-.st.work{border-color:var(--gold);box-shadow:0 0 0 1px rgba(232,182,76,.35),0 0 18px rgba(232,182,76,.15)}
-.st.work .pill{background:var(--gold);color:#1b1404}
-.st.done .pill{background:var(--green);color:#fff}
-.st.done .bar i{background:var(--green)}
-.st.err .pill{background:var(--red);color:#fff}
-.st.hub{width:210px;border-color:#3a4a70}
-.st.hub .ic{font-size:26px}
-.st.ping{animation:ping .35s ease-out}
-@keyframes ping{0%{transform:translate(-50%,-50%) scale(1)}40%{transform:translate(-50%,-50%) scale(1.05)}100%{transform:translate(-50%,-50%) scale(1)}}
-#log{flex:1;overflow-y:auto;font:11px/1.45 "JetBrains Mono",monospace;color:#a9b6d3;max-height:calc(100vh - 140px)}
+.mapwrap{position:relative;min-width:0;display:flex;justify-content:center;align-items:flex-start}
+#map{display:block;border-radius:12px;border:1px solid var(--line);background:#1c2238;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.hint{position:absolute;left:12px;bottom:10px;font-size:11px;color:#f3dfc0;background:rgba(10,16,32,.72);border-radius:99px;padding:3px 10px;pointer-events:none}
+#card{position:absolute;width:280px;background:var(--panel);border:1px solid var(--gold);border-radius:12px;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.55);z-index:5}
+#card[hidden]{display:none}
+#card .hd{display:flex;gap:10px;align-items:center;padding-right:18px}
+#card .ic{font-size:30px}
+#card .nm{font-weight:700;font-size:15px}
+#card .rl{color:var(--gold);font-size:12.5px}
+#card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:10px 0 8px;font-size:12px}
+#card dt{color:var(--muted)} #card dd{margin:0}
+#card pre{margin:0;max-height:120px;overflow:auto;white-space:pre-wrap;background:var(--bg);border-radius:6px;padding:7px;font:10.5px/1.4 "JetBrains Mono",monospace;color:#a9b6d3}
+#card pre:empty{display:none}
+#card .x{position:absolute;right:6px;top:4px;border:0;background:none;color:var(--muted);font-size:18px;padding:4px 8px}
+#log{flex:1;overflow-y:auto;font:11px/1.45 "JetBrains Mono",monospace;color:#a9b6d3;max-height:calc(100vh - 130px)}
 #log div{padding:2px 0;border-bottom:1px dashed #1c2740}
-#log .t{color:var(--muted)} #log .g{color:var(--gold)} #log .ok{color:#5fd39a} #log .e{color:#ff7a82}
-#result{display:none;margin:0 14px 24px;background:#fbfaf6;color:#1d2433;border-radius:12px;padding:28px 40px;border-top:6px solid var(--red)}
+#log .t{color:var(--muted)} #log .g{color:var(--gold)} #log .ok{color:#5fd39a} #log .e{color:#ff7a82} #log .c{color:#ffa45c}
+#result{display:none;margin:0 12px 24px;background:#fbfaf6;color:#1d2433;border-radius:12px;padding:28px 40px;border-top:6px solid var(--red)}
 #result.show{display:block}
 #result .head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 #result .head b{font-size:13px;color:#6a7286;text-transform:uppercase;letter-spacing:1px}
@@ -69,152 +60,527 @@ button:disabled{opacity:.5;cursor:default}
 #doc table{border-collapse:collapse;margin:10px 0}#doc td,#doc th{border:1px solid #d6d9e0;padding:5px 9px}#doc th{background:#eef0f4}
 #doc h1{color:var(--red)} #doc h2{border-bottom:1px solid #e3e5ea;padding-bottom:4px;margin-top:28px}
 @media (max-width:1200px){main{grid-template-columns:1fr}#log{max-height:300px}.kpis{display:none}}
-@media (prefers-reduced-motion:reduce){.st.ping{animation:none}}
 </style>
 </head>
 <body>
 <header>
   <div class="logo">🎁</div>
-  <div class="brand"><b>Wichtel GmbH &amp; Co. KG</b><div>Angebotszentrale Nordpol · Commerce-Beratung für Fabelwesen seit 1823</div></div>
+  <div class="brand"><b>Wichtel GmbH &amp; Co. KG</b><div>North Pole bid floor · commerce consulting for fable creatures since 1823</div></div>
+  <button id="snd" title="Toggle sound">🔊 Sound on</button>
   <div class="kpis">
-    <div class="kpi"><span>Aktive Agenten</span><b id="kActive">0</b></div>
+    <div class="kpi"><span>Active agents</span><b id="kActive">0</b></div>
     <div class="kpi"><span>Tokens</span><b id="kTok">0</b></div>
     <div class="kpi"><span>Tokens/s</span><b id="kRate">0</b></div>
-    <div class="kpi"><span>Pakete</span><b id="kPak">0</b></div>
-    <div class="kpi"><span>Laufzeit</span><b id="kTime">0,0 s</b></div>
+    <div class="kpi"><span>Parcels</span><b id="kPak">0</b></div>
+    <div class="kpi"><span>Elapsed</span><b id="kTime">0.0 s</b></div>
   </div>
 </header>
 <main>
   <section class="panel">
-    <h2>Ausschreibung (RFP)</h2>
-    <textarea id="rfp" placeholder="RFP hier einfügen oder Datei (.md/.txt) hochladen …"></textarea>
+    <h2>Request for proposal</h2>
+    <textarea id="rfp" placeholder="Paste an RFP or upload a file (.md/.txt) …"></textarea>
     <div class="row">
-      <label class="btn">Datei hochladen<input id="file" type="file" accept=".md,.txt,.markdown,text/plain" hidden></label>
-      <button id="sample">Beispiel: Weihnachtsmann</button>
+      <label class="btn">Upload file<input id="file" type="file" accept=".md,.txt,.markdown,text/plain" hidden></label>
+      <button id="sample">Sample: Santa Claus</button>
     </div>
-    <button id="go" class="primary">Angebot erstellen lassen</button>
+    <button id="go" class="primary">Write the proposal</button>
     <div id="phase"></div>
   </section>
-  <section class="floorwrap"><div id="floor"><canvas id="fx"></canvas></div></section>
-  <section class="panel"><h2>Funkprotokoll</h2><div id="log"></div></section>
+  <section class="mapwrap" id="wrap">
+    <canvas id="map"></canvas>
+    <div class="hint">Click a character to see its role</div>
+    <div id="card" hidden><button class="x" aria-label="Close">×</button>
+      <div class="hd"><span class="ic"></span><div><div class="nm"></div><div class="rl"></div></div></div>
+      <dl><dt>Workstation</dt><dd class="dk"></dd><dt>Status</dt><dd class="stt"></dd><dt>Tokens</dt><dd class="tk"></dd></dl>
+      <pre class="tx"></pre>
+    </div>
+  </section>
+  <section class="panel"><h2>Radio log</h2><div id="log"></div></section>
 </main>
 <section id="result">
-  <div class="head"><b>Angebot · versandbereit</b>
-    <div class="row"><button id="dl">Als Markdown laden</button><button id="pdf">Als PDF drucken</button></div></div>
+  <div class="head"><b>Proposal · ready to ship</b>
+    <div class="row"><button id="dl">Download Markdown</button><button id="pdf">Print as PDF</button></div></div>
   <div id="doc"></div>
 </section>
 <script>
 const $ = s => document.querySelector(s);
-const floor = $('#floor'), canvas = $('#fx'), ctx = canvas.getContext('2d');
+const canvas = $('#map'), ctx = canvas.getContext('2d'), wrap = $('#wrap');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let stations = {}, active = new Set(), couriers = [], tokens = 0, packages = 0, t0 = 0, running = false, finalMd = '';
+const W = 1440, H = 840, WALL = 84;
 const MAXTOK = {chapter: 1800, spec: 1100, critic: 450, intake: 600};
+let desks = {}, chars = {}, couriers = [], tokens = 0, packages = 0, t0 = 0, running = false, finalMd = '';
+let scale = 1, mapImg = null, selected = null;
 
-// ---------- layout ----------
-function layout(r){
-  floor.querySelectorAll('.st').forEach(e => e.remove()); stations = {};
-  const add = (a, x, y, kind) => {
-    const el = document.createElement('div');
-    el.className = 'st' + (kind === 'hub' ? ' hub' : '');
-    el.style.left = x + '%'; el.style.top = y + '%';
-    el.innerHTML = `<div class="top"><div class="ic">${a.icon}</div><div style="min-width:0"><div class="nm">${a.name}</div><div class="rl">${a.title}</div></div><div class="pill">bereit</div></div><div class="tx"></div><div class="bar"><i></i></div>`;
-    floor.appendChild(el);
-    stations[a.id] = {a, el, x, y, kind, buf: '', tok: 0, max: MAXTOK[kind] || 1100};
+// ---------- world layout ----------
+const COLS = [180, 450, 720, 990, 1260];
+const DOORS = [   // inside point (ix,iy) and outside point (ox,oy)
+  {x: 315, y: WALL, ix: 315, iy: 112, ox: 315, oy: 40, side: 'top'},
+  {x: 1125, y: WALL, ix: 1125, iy: 112, ox: 1125, oy: 40, side: 'top'},
+  {x: 12, y: 430, ix: 54, iy: 430, ox: -16, oy: 430, side: 'left'},
+  {x: W - 12, y: 430, ix: W - 54, iy: 430, ox: W + 16, oy: 430, side: 'right'},
+  {x: 180, y: H - 12, ix: 180, iy: H - 52, ox: 180, oy: H + 16, side: 'bottom'},
+];
+const PROPS = {oberelf: '🗺️', rudolph: '🖥️', zahnfee: '🧮', nornen: '📜', drache: '🔐', abraxas: '🔭', einhorn: '🎨',
+  troll: '🔌', kobold: '🛠️', sandmann: '📅', riese: '👥', ruprecht: '✅', krampus: '💰', holle: '🖋️', poststelle: '📮', versand: '📦'};
+const BODY = {oberelf: '#2f9e66', rudolph: '#8a5a35', zahnfee: '#c38ad6', nornen: '#6b6f8a', drache: '#3f8f4f', abraxas: '#2b2d38',
+  einhorn: '#e9a6c8', troll: '#6f7f45', kobold: '#d9752b', sandmann: '#3b4f9e', riese: '#8d8378', ruprecht: '#5a3b26',
+  krampus: '#8f1f2a', holle: '#c9d6ea'};
+const CURSES = ['Holy reindeer droppings!', 'By all pointy hats!', 'Not another parcel!', 'Jingle my bells, enough!',
+  'Who ordered THIS?!', 'Great Krampus!', 'Sweet sugarplums, no!', 'I only have two hands!', 'Tinsel and thunder!',
+  'Oh, fruitcake!', 'Frozen mistletoe!', 'Again?! Seriously?!'];
+
+// ---------- sound: synthesised with WebAudio, no audio files ----------
+const sfx = (() => {
+  let ac = null, out = null, on = true, noiseBuf = null, keysAcc = 0;
+  try { on = localStorage.getItem('wichtel-sound') !== 'off'; } catch (e) {}
+  function init(){
+    if (ac || !on) return;
+    ac = new (window.AudioContext || window.webkitAudioContext)(); out = ac.createGain(); out.gain.value = .55; out.connect(ac.destination);
+    noiseBuf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate); const d = noiseBuf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    // office room tone: low filtered noise (air conditioning) that loops forever
+    const hum = ac.createBufferSource(); hum.buffer = noiseBuf; hum.loop = true;
+    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 260; const g = ac.createGain(); g.gain.value = .07;
+    hum.connect(lp).connect(g).connect(out); hum.start();
+  }
+  const live = () => ac && on && ac.state === 'running';
+  function noise(t, dur, type, freq, q, vol, attack = .002){
+    const s = ac.createBufferSource(); s.buffer = noiseBuf; const f = ac.createBiquadFilter(); f.type = type; f.frequency.value = freq; f.Q.value = q;
+    const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + attack); g.gain.exponentialRampToValueAtTime(.001, t + dur);
+    s.connect(f).connect(g).connect(out); s.start(t, Math.random()); s.stop(t + dur + .05); return f;
+  }
+  return {
+    init, get on(){ return on; },
+    toggle(){ on = !on; try { localStorage.setItem('wichtel-sound', on ? 'on' : 'off'); } catch (e) {}
+      if (on){ init(); ac && ac.resume(); } else if (ac) ac.suspend(); return on; },
+    whip(){ if (!live()) return; const t = ac.currentTime;
+      const sw = noise(t, .22, 'bandpass', 400, 2, .25, .12); sw.frequency.exponentialRampToValueAtTime(2500, t + .2);   // swoosh
+      noise(t + .2, .09, 'highpass', 1800, .7, 1.1, .001); noise(t + .2, .05, 'bandpass', 3800, 3, .6, .001); },        // crack
+    babble(id){ if (!live()) return; let h = 0; for (const ch of id) h = h * 31 + ch.charCodeAt(0) & 0xffff;
+      const base = 150 + h % 170, n = 6 + h % 5; let t = ac.currentTime;
+      for (let i = 0; i < n; i++){ const o = ac.createOscillator(), f = ac.createBiquadFilter(), g = ac.createGain(), d = .06 + Math.random() * .05;
+        o.type = 'sawtooth'; o.frequency.setValueAtTime(base * (.85 + Math.random() * .4), t); o.frequency.linearRampToValueAtTime(base * (.8 + Math.random() * .5), t + d);
+        f.type = 'bandpass'; f.frequency.value = 600 + Math.random() * 1600; f.Q.value = 5;
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.18, t + .01); g.gain.linearRampToValueAtTime(0, t + d);
+        o.connect(f).connect(g).connect(out); o.start(t); o.stop(t + d + .02); t += d + .015; } },
+    // office bed: keyboard clicks scale with the number of busy agents, plus a phone or mug now and then
+    tick(dt, busy){ if (!live()) return; keysAcc += dt * (2 + busy * 5);
+      while (keysAcc > 1){ keysAcc--; noise(ac.currentTime + Math.random() * .1, .03, 'highpass', 2500 + Math.random() * 2500, 1, .05 + Math.random() * .05); }
+      if (Math.random() < dt * .04){ const t = ac.currentTime;   // phone ring
+        for (let r = 0; r < 2; r++) for (const fr of [1300, 1700]){ const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = fr;
+          g.gain.setValueAtTime(0, t + r * .5); g.gain.linearRampToValueAtTime(.025, t + r * .5 + .02); g.gain.setValueAtTime(.025, t + r * .5 + .35); g.gain.linearRampToValueAtTime(0, t + r * .5 + .4);
+          o.connect(g).connect(out); o.start(t + r * .5); o.stop(t + r * .5 + .45); } }
+      if (Math.random() < dt * .06){ const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime; o.type = 'sine'; o.frequency.value = 2200 + Math.random() * 900;
+        g.gain.setValueAtTime(.04, t); g.gain.exponentialRampToValueAtTime(.001, t + .4); o.connect(g).connect(out); o.start(t); o.stop(t + .45); } }   // mug clink
   };
-  const cols = [11, 30.5, 50, 69.5, 89];
-  r.specialists.forEach((s, i) => add(s, cols[i % 5], i < 5 ? 11 : 66, 'spec'));
-  add(r.inbox, 11, 38.5, 'io'); add(r.hub, 50, 38.5, 'hub'); add(r.outbox, 89, 38.5, 'io');
-  r.critics.forEach((c, i) => add(c, cols[i + 1], 90, 'critic'));
-  resize();
-}
-function resize(){ const b = floor.getBoundingClientRect(); canvas.width = b.width * devicePixelRatio; canvas.height = b.height * devicePixelRatio; }
-addEventListener('resize', resize);
-function pos(id){ const s = stations[id], b = floor.getBoundingClientRect(); return [s.x / 100 * b.width, s.y / 100 * b.height]; }
+})();
+addEventListener('pointerdown', () => { sfx.init(); }, {once: true});
 
-// ---------- couriers (elves) ----------
-const COLORS = ['#2f9e66', '#c8323c', '#4c8ee8', '#8a5cd6', '#d98a2b'];
-function courier(from, to, label, big){
-  if (!stations[from] || !stations[to]) return;
-  const [x1, y1] = pos(from), [x2, y2] = pos(to);
-  const dist = Math.hypot(x2 - x1, y2 - y1);
-  couriers.push({x1, y1, x2, y2, t: 0, dur: (big ? 650 : 450) + dist * (big ? 1.4 : 0.9), label, big, to,
-    color: COLORS[Math.random() * COLORS.length | 0], hop: Math.random() * 6, lane: (Math.random() - .5) * 26});
+// ---------- Claude, the overseer: patrols, cracks the whip, elves nearby hurry ----------
+const boss = {a: {id: 'claude', icon: '🟧', name: 'Claude', title: 'Overseer · cracks the whip so the elves hurry'}, d: {name: 'The whole floor'},
+  x: 720, y: 560, tx: 720, ty: 560, wait: 1, face: 1, moving: false, crack: -1e9, status: 'idle', tok: 0, buf: '', label: '',
+  hop: 0, target: null, bubble: null, blink: 0};
+const BOSS_LINES = ['Faster, elves!', 'Chop chop!', 'Deadline is midnight!', 'Move it, move it!', 'Less chit-chat, more parcels!',
+  'Tokens are cheap, time is not!', 'Did I say break?', 'Santa is waiting!'];
+function pickBoss(){
+  const busy = running ? Object.values(chars).filter(c => c.status === 'work') : [];
+  if (busy.length && Math.random() < .8){ const c = busy[Math.random() * busy.length | 0];
+    boss.target = c; boss.tx = c.x + (c.x > 720 ? -72 : 72); boss.ty = c.y + 12; return; }
+  boss.target = null;
+  for (let i = 0; i < 20; i++){ const x = 120 + Math.random() * (W - 240), y = WALL + 80 + Math.random() * (H - WALL - 140);
+    if (!blocked(x, y)){ boss.tx = x; boss.ty = y; return; } }
 }
-function drawElf(x, y, phase, c, big, label){
-  const s = big ? 1.25 : .9;
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
-  const leg = Math.sin(phase) * 4;
+function crack(now, quiet){
+  boss.crack = now; sfx.whip();
+  if (!quiet) boss.bubble = {text: BOSS_LINES[Math.random() * BOSS_LINES.length | 0], t0: now, color: '#a8461f'};
+  for (const e of couriers) if (Math.hypot(e.x - boss.x, e.y - boss.y) < 280) e.boost = now + 2500;
+  if (boss.target && Math.random() < .35) setTimeout(() => curse(boss.target || chars.oberelf, performance.now()), 500);
+}
+function updBoss(dt, now){
+  const b = boss; b.status = running ? 'work' : 'idle'; b.label = running ? 'Cracking the whip' : 'Patrolling';
+  // cracks on the move too: every ~2 s during a run, now and then while idle
+  if (!reduce && now - b.crack > (running ? 1600 + Math.random() * 1200 : 6000 + Math.random() * 6000)) crack(now, Math.random() < .6);
+  if (b.wait > 0){ b.wait -= dt; b.moving = false; return; }
+  const dx = b.tx - b.x, dy = b.ty - b.y, d = Math.hypot(dx, dy), sp = running ? 170 : 55;
+  if (d < 4){ b.moving = false;
+    if (b.target){ b.face = Math.sign(b.target.x - b.x) || 1; crack(now); b.wait = .6; }
+    else b.wait = reduce ? 1e9 : 1 + Math.random() * 2;
+    pickBoss(); return; }
+  const st = Math.min(d, sp * dt); b.x += dx / d * st; b.y += dy / d * st; b.moving = true;
+  if (Math.abs(dx) > 1) b.face = Math.sign(dx);
+}
+function drawBoss(now){
+  const b = boss, s = .22, walk = b.moving ? Math.sin(now / 80) : 0, bob = Math.abs(walk) * 2;
+  const R = (x0, y0, x1, y1) => ctx.fillRect((x0 - 205) * s, (y0 - 340) * s, (x1 - x0) * s, (y1 - y0) * s);
+  ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(b.x, b.y + 2, 40, 8, 0, 0, 7); ctx.fill();
+  if (selected === b){ ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(b.x, b.y + 2, 46, 10, 0, 0, 7); ctx.stroke(); }
+  ctx.save(); ctx.translate(b.x, b.y); ctx.scale(b.face, 1);
+  // legs, alternating while walking
+  [[80, 105], [130, 155], [260, 285], [310, 335]].forEach(([l, r], i) => { const lift = (i % 2 ? walk : -walk) * 14;
+    ctx.fillStyle = '#c4664a'; R(l, 280, r, 340 - Math.max(0, lift)); ctx.fillStyle = '#9e4c33'; R(l, 330 - Math.max(0, lift), r, 340 - Math.max(0, lift)); });
+  ctx.translate(0, -bob);
+  // body with light top edge, shaded belly and side shadow
+  ctx.fillStyle = '#d97757'; R(55, 90, 360, 292); R(0, 190, 410, 242);
+  ctx.fillStyle = '#ec9878'; R(55, 90, 360, 102); R(0, 190, 55, 198); R(360, 190, 410, 198);
+  ctx.fillStyle = '#bf6143'; R(55, 268, 360, 292); R(0, 232, 55, 242); R(360, 232, 410, 242); R(342, 102, 360, 268);
+  ctx.fillStyle = 'rgba(255,255,255,.08)'; for (let y = 110; y < 260; y += 26) R(70, y, 340, y + 4);
+  // overseer cap
+  ctx.fillStyle = '#2a2230'; R(95, 62, 320, 92); R(70, 84, 345, 96); ctx.fillStyle = '#e8b64c'; R(190, 68, 225, 84);
+  // eyes: white, pupils look ahead, blink now and then, angry brows while cracking
+  const cracking = now - b.crack < 700, blink = (now % 4200) < 130 ? .15 : 1, eh = 48 * blink, ey = 166 - eh / 2;
+  ctx.fillStyle = '#fff'; R(107, ey, 131, ey + eh); R(284, ey, 308, ey + eh);
+  ctx.fillStyle = '#2a1a14'; if (blink > .5){ R(119, 160, 131, 182); R(296, 160, 308, 182); }
+  if (cracking){ ctx.fillStyle = '#2a1a14'; ctx.save(); ctx.translate((119 - 205) * s, (132 - 340) * s); ctx.rotate(.35); ctx.fillRect(-6, -2, 12, 3.5); ctx.restore();
+    ctx.save(); ctx.translate((296 - 205) * s, (132 - 340) * s); ctx.rotate(-.35); ctx.fillRect(-6, -2, 12, 3.5); ctx.restore(); }
+  // whip: handle in the front hand, lash swings over the head and snaps forward
+  const hx = (410 - 205) * s, hy = (216 - 340) * s, p = (now - b.crack) / 380;
+  let a = 1.25 + Math.sin(now / 420) * .12;
+  if (p < 1) a = -2.7 + 2.95 * (1 - Math.pow(1 - p, 3)); else if (p < 2.2) a = .25 + (a - .25) * (p - 1) / 1.2;
+  ctx.strokeStyle = '#5a3b26'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(hx - 4, hy + 2); ctx.lineTo(hx + 8, hy - 8); ctx.stroke();
+  const L = 70, ox = hx + 8, oy = hy - 8, tx = ox + Math.cos(a) * L, ty = oy + Math.sin(a) * L, lag = p < 1 ? -.8 : .35;
+  ctx.strokeStyle = '#3a2a1e'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(ox, oy); ctx.quadraticCurveTo(ox + Math.cos(a + lag) * L * .6, oy + Math.sin(a + lag) * L * .6, tx, ty); ctx.stroke();
+  if (p > .8 && p < 1.4){ ctx.strokeStyle = '#ffd36a'; ctx.lineWidth = 2;
+    for (let i = 0; i < 6; i++){ const r = i * Math.PI / 3; ctx.beginPath(); ctx.moveTo(tx + Math.cos(r) * 4, ty + Math.sin(r) * 4); ctx.lineTo(tx + Math.cos(r) * 11, ty + Math.sin(r) * 11); ctx.stroke(); } }
+  ctx.restore();
+  if (p > .8 && p < 2){ ctx.save(); ctx.globalAlpha = Math.min(1, 2 - p); ctx.font = '900 italic 16px Inter'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffd36a'; ctx.strokeStyle = '#3a1a0c'; ctx.lineWidth = 3; const cx = b.x + b.face * (hx + 8 + Math.cos(.25) * 70), cy = b.y + oy - 18 - (p - .8) * 12;
+    ctx.strokeText('CRACK!', cx, cy); ctx.fillText('CRACK!', cx, cy); ctx.restore(); }
+}
+
+function layout(r){
+  desks = {}; chars = {}; couriers = []; closeCard();
+  const desk = (a, x, y, kind, w = 132, h = 52) => desks[a.id] = {a, x, y, w, h, kind, name: a.desk || a.name, glow: 0, done: false};
+  const person = (a, kind) => { const d = desks[a.id];
+    chars[a.id] = {a, kind, d, x: d.x + (Math.random() - .5) * 120, y: d.y + 70, tx: 0, ty: 0, state: 'wander', wait: Math.random() * 2,
+      face: 1, moving: false, color: BODY[a.id] || '#4c8ee8', status: 'idle', label: '', buf: '', lines: [], tok: 0, max: 1100,
+      jobs: 0, load: [], cool: 0, bubble: null, hop: Math.random() * 6}; };
+  r.specialists.forEach((s, i) => { desk(s, COLS[i % 5], i < 5 ? 215 : 600, 'spec'); person(s, 'spec'); });
+  desk(r.hub, 720, 410, 'hub', 230, 66); person(r.hub, 'hub');
+  r.critics.forEach((c, i) => { desk(c, COLS[i + 1], 745, 'critic'); person(c, 'critic'); });
+  desk(r.inbox, 95, 335, 'io', 96, 52); desk(r.outbox, 1345, 335, 'io', 96, 52);
+  Object.values(chars).forEach(pickWander);
+  mapImg = buildMap(); fit();
+}
+
+// ---------- static map (floor, walls, doors, decor), rendered once ----------
+function seeded(s){ return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+function rr(g, x, y, w, h, r){ g.beginPath(); g.roundRect(x, y, w, h, r); }
+function buildMap(){
+  const m = document.createElement('canvas'); m.width = W * 2; m.height = H * 2;
+  const g = m.getContext('2d'); g.scale(2, 2); const rnd = seeded(11);
+  const planks = ['#6b4a2f', '#654529', '#704d31', '#5f4128'];
+  for (let y = WALL; y < H; y += 28){
+    for (let x = -(rnd() * 120 | 0); x < W;){ const len = 110 + rnd() * 170 | 0;
+      g.fillStyle = planks[rnd() * planks.length | 0]; g.fillRect(x, y, len, 28);
+      g.fillStyle = 'rgba(0,0,0,.28)'; g.fillRect(x + len - 1, y, 1.5, 28); x += len; }
+    g.fillStyle = 'rgba(0,0,0,.32)'; g.fillRect(0, y + 27, W, 1.2);
+  }
+  // rugs: command area and review corner
+  g.fillStyle = '#7d1f27'; rr(g, 520, 318, 400, 190, 18); g.fill();
+  g.strokeStyle = '#e8b64c'; g.lineWidth = 3; rr(g, 532, 330, 376, 166, 12); g.stroke();
+  g.fillStyle = '#1f4d3a'; rr(g, 330, 690, 780, 120, 14); g.fill();
+  g.strokeStyle = 'rgba(232,182,76,.6)'; g.lineWidth = 2; rr(g, 340, 700, 760, 100, 10); g.stroke();
+  for (const d of Object.values(desks)) if (d.kind !== 'hub'){ g.fillStyle = 'rgba(0,0,0,.2)'; rr(g, d.x - d.w / 2 - 14, d.y - d.h / 2 - 10, d.w + 28, d.h + 76, 10); g.fill(); }
+  // walls
+  g.fillStyle = '#12172a'; g.fillRect(0, 0, W, 16);
+  g.fillStyle = '#2b3352'; g.fillRect(0, 16, W, WALL - 16);
+  g.strokeStyle = 'rgba(0,0,0,.35)'; g.lineWidth = 1;
+  for (let y = 16; y < WALL; y += 17){ g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke();
+    for (let x = (y / 17 % 2) * 22; x < W; x += 44){ g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + 17); g.stroke(); } }
+  g.fillStyle = '#1a2036'; g.fillRect(0, WALL - 6, W, 6);
+  g.fillStyle = '#1c2238'; g.fillRect(0, WALL, 24, H); g.fillRect(W - 24, WALL, 24, H); g.fillRect(0, H - 24, W, 24);
+  g.fillStyle = '#12172a'; g.fillRect(20, WALL, 4, H); g.fillRect(W - 24, WALL, 4, H); g.fillRect(0, H - 24, W, 4);
+  // windows with snow
+  for (const wx of [480, 960]){
+    g.fillStyle = '#8a6a44'; g.fillRect(wx - 50, 20, 100, 52);
+    g.fillStyle = '#0b1a3a'; g.fillRect(wx - 44, 25, 88, 42);
+    g.fillStyle = '#fff'; for (let i = 0; i < 14; i++){ g.globalAlpha = .4 + rnd() * .6; g.fillRect(wx - 42 + rnd() * 84, 27 + rnd() * 38, 2, 2); }
+    g.globalAlpha = 1; g.fillStyle = '#e8eef8'; g.fillRect(wx - 44, 60, 88, 7);
+    g.fillStyle = '#8a6a44'; g.fillRect(wx - 1.5, 25, 3, 42);
+  }
+  // company sign
+  g.fillStyle = '#e8b64c'; rr(g, 590, 30, 260, 36, 6); g.fill();
+  g.fillStyle = '#2a1c06'; g.font = '700 15px Inter'; g.textAlign = 'center'; g.fillText('WICHTEL · BID FLOOR', 720, 54);
+  // doors
+  for (const d of DOORS){
+    g.fillStyle = '#05080f';
+    if (d.side === 'top'){ g.fillStyle = '#8a6a44'; g.fillRect(d.x - 36, 22, 72, WALL - 22); g.fillStyle = '#05080f'; g.fillRect(d.x - 30, 28, 60, WALL - 28);
+      g.fillStyle = '#3b5d3f'; rr(g, d.x - 34, WALL + 2, 68, 14, 3); g.fill(); }
+    else if (d.side === 'bottom'){ g.fillRect(d.x - 40, H - 24, 80, 24); g.fillStyle = '#8a6a44'; g.fillRect(d.x - 46, H - 24, 6, 24); g.fillRect(d.x + 40, H - 24, 6, 24);
+      g.fillStyle = '#3b5d3f'; rr(g, d.x - 34, H - 42, 68, 14, 3); g.fill(); }
+    else { const x = d.side === 'left' ? 0 : W - 24; g.fillRect(x, d.y - 42, 24, 84); g.fillStyle = '#8a6a44'; g.fillRect(x, d.y - 48, 24, 6); g.fillRect(x, d.y + 42, 24, 6);
+      g.fillStyle = '#3b5d3f'; rr(g, d.side === 'left' ? 26 : W - 40, d.y - 34, 14, 68, 3); g.fill(); }
+  }
+  // decor: trees, crates, plants
+  const tree = (x, y) => { g.fillStyle = 'rgba(0,0,0,.3)'; g.beginPath(); g.ellipse(x, y + 4, 28, 8, 0, 0, 7); g.fill();
+    g.fillStyle = '#5a3b26'; g.fillRect(x - 5, y - 10, 10, 14);
+    for (let i = 0; i < 3; i++){ g.fillStyle = ['#1f6b3d', '#257a46', '#2c8a50'][i]; g.beginPath(); g.moveTo(x - 30 + i * 6, y - 8 - i * 20); g.lineTo(x + 30 - i * 6, y - 8 - i * 20); g.lineTo(x, y - 40 - i * 22); g.fill(); }
+    for (let i = 0; i < 7; i++){ g.fillStyle = ['#c8323c', '#e8b64c', '#4c8ee8'][i % 3]; g.beginPath(); g.arc(x - 18 + rnd() * 36, y - 14 - rnd() * 50, 3, 0, 7); g.fill(); }
+    g.fillStyle = '#e8b64c'; g.font = '18px serif'; g.textAlign = 'center'; g.fillText('★', x, y - 82); };
+  tree(60, 175); tree(1380, 175);
+  const crate = (x, y) => { g.fillStyle = '#9a6b3c'; g.fillRect(x, y, 34, 30); g.strokeStyle = '#5a3b26'; g.lineWidth = 2; g.strokeRect(x, y, 34, 30);
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + 34, y + 30); g.stroke(); };
+  crate(1370, 250); crate(1398, 262); crate(1384, 228); crate(1360, 520); crate(1390, 530);
+  const plant = (x, y) => { g.fillStyle = '#7a4a2a'; g.fillRect(x - 10, y - 4, 20, 16); g.fillStyle = '#2c8a50';
+    for (let i = 0; i < 5; i++){ g.beginPath(); g.ellipse(x - 10 + i * 5, y - 12, 5, 11, (i - 2) * .4, 0, 7); g.fill(); } };
+  plant(60, 790); plant(1380, 790); plant(560, 120); plant(880, 120);
+  return m;
+}
+
+// ---------- camera: fit the whole map, no scroll bars ----------
+function fit(){
+  const maxW = wrap.clientWidth, maxH = Math.max(320, innerHeight - 100);
+  const cssW = Math.min(maxW, maxH * W / H), cssH = cssW * H / W;
+  canvas.style.width = cssW + 'px'; canvas.style.height = cssH + 'px';
+  canvas.width = cssW * devicePixelRatio; canvas.height = cssH * devicePixelRatio; scale = cssW / W;
+}
+new ResizeObserver(fit).observe(wrap); addEventListener('resize', fit);
+
+// ---------- characters ----------
+function blocked(x, y){ return Object.values(desks).some(d => Math.abs(x - d.x) < d.w / 2 + 26 && y > d.y - d.h / 2 - 20 && y < d.y + d.h / 2 + 16); }
+function pickWander(c){
+  for (let i = 0; i < 20; i++){
+    const x = c.d.x + (Math.random() - .5) * 520, y = c.d.y + 40 + (Math.random() - .5) * 300;
+    if (x > 60 && x < W - 60 && y > WALL + 46 && y < H - 40 && !blocked(x, y)){ c.tx = x; c.ty = y; return; }
+  }
+  c.tx = c.d.x; c.ty = c.d.y + 60;
+}
+function updChar(c, dt){
+  if (c.state === 'work'){ c.moving = false; return; }
+  if (c.wait > 0){ c.wait -= dt; c.moving = false; return; }
+  const dx = c.tx - c.x, dy = c.ty - c.y, d = Math.hypot(dx, dy), sp = c.state === 'goto' ? 230 : 50;
+  if (d < 3){ c.moving = false;
+    if (c.state === 'goto') c.state = 'work'; else { c.wait = reduce ? 1e9 : 1 + Math.random() * 3; pickWander(c); } return; }
+  const st = Math.min(d, sp * dt); c.x += dx / d * st; c.y += dy / d * st; c.moving = true;
+  if (Math.abs(dx) > 1) c.face = Math.sign(dx);
+}
+function goWork(c){ c.state = 'goto'; c.wait = 0; c.tx = c.d.x; c.ty = c.d.y + c.d.h / 2 + 30; if (reduce){ c.x = c.tx; c.y = c.ty; } }
+function goIdle(c){ c.state = 'wander'; c.wait = .4 + Math.random(); pickWander(c); }
+function curse(c, now, force){
+  if (!force && now < c.cool) return;
+  c.cool = now + 5000 + Math.random() * 3000;
+  const text = CURSES[Math.random() * CURSES.length | 0]; c.bubble = {text, t0: now};
+  log(`💢 ${c.a.name}: “${text}”`, 'c');
+}
+function notify(id, now){
+  const c = chars[id]; if (!c) return;
+  c.load = c.load.filter(t => now - t < 4000); c.load.push(now);
+  if (c.status === 'work' && c.load.length >= 3 && Math.random() < .5) curse(c, now);
+}
+function drawChar(c, now){
+  const {x, y} = c, walk = c.moving ? Math.sin(now / 70 + c.hop) : 0, bob = c.state === 'work' ? Math.sin(now / 90) * 1.5 : Math.abs(walk) * 2;
+  ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(x, y + 2, 15, 5, 0, 0, 7); ctx.fill();
+  if (c.status === 'work' || selected === c){ ctx.strokeStyle = selected === c ? '#fff' : 'rgba(232,182,76,.85)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(x, y + 2, 21, 7, 0, 0, 7); ctx.stroke(); }
+  ctx.strokeStyle = '#1b1b1b'; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x - 5, y - 12); ctx.lineTo(x - 5 - walk * 5, y); ctx.moveTo(x + 5, y - 12); ctx.lineTo(x + 5 + walk * 5, y); ctx.stroke();
+  ctx.fillStyle = c.color; rr(ctx, x - 13, y - 34 - bob, 26, 24, 8); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(x - 13, y - 17 - bob, 26, 4);
+  if (c.state === 'work'){ const k = Math.sin(now / 55) * 3; ctx.fillStyle = c.color;   // typing arms
+    ctx.beginPath(); ctx.arc(x - 15, y - 24 - bob + k, 4, 0, 7); ctx.arc(x + 15, y - 24 - bob - k, 4, 0, 7); ctx.fill(); }
+  ctx.save(); ctx.translate(x, y - 46 - bob); if (c.face < 0) ctx.scale(-1, 1);
+  ctx.font = '30px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(c.a.icon, 0, 0); ctx.restore();
+}
+function drawTag(c){
+  ctx.font = '600 13px Inter'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const t = c.a.name + (c.status === 'done' ? ' ✓' : ''), w = ctx.measureText(t).width + 12;
+  ctx.fillStyle = c.status === 'work' ? 'rgba(232,182,76,.95)' : c.status === 'done' ? 'rgba(47,158,102,.92)' : c.status === 'err' ? 'rgba(200,50,60,.92)' : 'rgba(10,16,32,.78)';
+  rr(ctx, c.x - w / 2, c.y + 8, w, 18, 9); ctx.fill();
+  ctx.fillStyle = c.status === 'work' ? '#1b1404' : '#fff'; ctx.fillText(t, c.x, c.y + 17.5);
+}
+function drawBubble(c, now){
+  const b = c.bubble; if (!b) return; const age = now - b.t0; if (age > 2600){ c.bubble = null; return; }
+  const pop = Math.min(1, age / 140), s = .6 + .4 * pop + (age < 140 ? 0 : 0), fade = age > 2200 ? 1 - (age - 2200) / 400 : 1;
+  ctx.save(); ctx.globalAlpha = fade; ctx.translate(c.x, c.y - 92); ctx.scale(s, s);
+  ctx.font = '700 15px Inter'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const w = ctx.measureText(b.text).width + 22;
+  ctx.fillStyle = '#fff'; ctx.strokeStyle = '#1b1b1b'; ctx.lineWidth = 2;
+  rr(ctx, -w / 2, -16, w, 32, 12); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-6, 15); ctx.lineTo(0, 27); ctx.lineTo(7, 15); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#fff'; ctx.fillRect(-5, 13, 11, 3);
+  ctx.fillStyle = b.color || '#b3202b'; ctx.fillText(b.text, 0, 1); ctx.restore();
+}
+
+// ---------- workstations ----------
+function drawDesk(d, now){
+  const {x, y, w, h} = d, x0 = x - w / 2, y0 = y - h / 2, owner = chars[d.a.id];
+  const busy = owner && owner.status === 'work';
+  ctx.fillStyle = 'rgba(0,0,0,.35)'; rr(ctx, x0 + 5, y0 + 9, w, h, 8); ctx.fill();
+  ctx.fillStyle = d.kind === 'io' ? '#3a4a70' : '#4a2f1c'; rr(ctx, x0, y0 + h - 18, w, 18, 6); ctx.fill();
+  ctx.fillStyle = d.kind === 'io' ? '#5d75a8' : d.kind === 'hub' ? '#9a6a42' : '#8b5e3c'; rr(ctx, x0, y0, w, h - 14, 7); ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,.12)'; ctx.fillRect(x0 + 6, y0 + 4, w - 12, 3);
+  if (busy || d.glow > 0){ ctx.strokeStyle = `rgba(232,182,76,${busy ? .6 + .4 * Math.sin(now / 160) : d.glow})`; ctx.lineWidth = 3; rr(ctx, x0 - 3, y0 - 3, w + 6, h + 6, 9); ctx.stroke(); }
+  ctx.fillStyle = '#efe6d2'; ctx.save(); ctx.translate(x + w / 5, y0 + 13); ctx.rotate(.12); ctx.fillRect(-12, -8, 24, 17); ctx.restore();
+  ctx.font = '24px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(PROPS[d.a.id] || '📁', x - w / 5, y0 + (h - 14) / 2 + 1);
+  ctx.font = '700 10.5px Inter'; ctx.fillStyle = '#f3dfc0'; ctx.fillText(d.name.toUpperCase(), x, y0 + h - 8.5);
+  if (d.glow > 0) d.glow = Math.max(0, d.glow - .02);
+}
+function wrapText(s, n, max){
+  const words = s.replace(/[#*|`>_-]+/g, ' ').replace(/\s+/g, ' ').trim().split(' '), out = []; let line = '';
+  for (const w of words){ if ((line + ' ' + w).length > n && line){ out.push(line); line = w; } else line = line ? line + ' ' + w : w; }
+  if (line) out.push(line); return out.slice(-max);
+}
+function drawScreen(c){
+  const d = c.d, w = 236, h = 66, x0 = d.x - w / 2, y0 = d.y - d.h / 2 - h - 12;
+  ctx.fillStyle = 'rgba(8,12,24,.92)'; ctx.strokeStyle = '#e8b64c'; ctx.lineWidth = 1.5; rr(ctx, x0, y0, w, h, 8); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#e8b64c'; ctx.font = '700 10.5px Inter'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  ctx.fillText(c.label, x0 + 8, y0 + 14);
+  ctx.fillStyle = '#c9d4ec'; ctx.font = '11px "JetBrains Mono",monospace';
+  c.lines.forEach((l, i) => ctx.fillText(l, x0 + 8, y0 + 29 + i * 13));
+  ctx.fillStyle = '#22304c'; ctx.fillRect(x0 + 8, y0 + h - 7, w - 16, 3);
+  ctx.fillStyle = '#e8b64c'; ctx.fillRect(x0 + 8, y0 + h - 7, (w - 16) * Math.min(1, c.tok / c.max), 3);
+}
+
+// ---------- couriers: elves enter through a door, pick up, deliver, leave ----------
+const COLORS = ['#2f9e66', '#c8323c', '#4c8ee8', '#8a5cd6', '#d98a2b'];
+function nearestDoor(x, y){ return DOORS.reduce((a, b) => Math.hypot(b.ix - x, b.iy - y) < Math.hypot(a.ix - x, a.iy - y) ? b : a); }
+function anchor(id){
+  const c = chars[id]; if (c) return () => [c.x + 24, c.y - 4];
+  const d = desks[id]; return d && (() => [d.x, d.y + d.h / 2 + 20]);
+}
+function courier(from, to, label, big){
+  const A = anchor(from), B = anchor(to); if (!A || !B) return;
+  const [ax, ay] = A(), [bx, by] = B(), d1 = nearestDoor(ax, ay), d2 = nearestDoor(bx, by);
+  d1.flash = 1; d2.flash = Math.max(d2.flash || 0, .4);
+  couriers.push({x: d1.ox, y: d1.oy, way: [() => [d1.ix, d1.iy], A, B, () => [d2.ix, d2.iy], () => [d2.ox, d2.oy]], i: 0,
+    big, label, to, carry: false, speed: (big ? 270 : 330) * (.85 + Math.random() * .3), face: 1,
+    color: COLORS[Math.random() * COLORS.length | 0], hop: Math.random() * 6});
+}
+function drawElf(e, now){
+  const s = e.big ? 1.6 : 1.3, leg = Math.sin(now / 45 + e.hop) * 4, y = e.y - Math.abs(Math.sin(now / 60 + e.hop)) * 2;
+  ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.beginPath(); ctx.ellipse(e.x, e.y + 20, 9, 3, 0, 0, 7); ctx.fill();
+  ctx.save(); ctx.translate(e.x, y); ctx.scale(s * e.face, s);
   ctx.strokeStyle = '#1b1b1b'; ctx.lineWidth = 2; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-2, 6); ctx.lineTo(-2 - leg, 13); ctx.moveTo(2, 6); ctx.lineTo(2 + leg, 13); ctx.stroke();
-  ctx.fillStyle = c; ctx.fillRect(-5, -3, 10, 10);                     // body
-  ctx.fillStyle = '#f2cfa8'; ctx.beginPath(); ctx.arc(0, -7, 4.5, 0, 7); ctx.fill(); // head
-  ctx.fillStyle = '#c8323c'; ctx.beginPath(); ctx.moveTo(-5, -9); ctx.lineTo(5, -9); ctx.lineTo(7, -19); ctx.fill(); // hat
+  ctx.fillStyle = e.color; ctx.fillRect(-5, -3, 10, 10);
+  ctx.fillStyle = '#f2cfa8'; ctx.beginPath(); ctx.arc(0, -7, 4.5, 0, 7); ctx.fill();
+  ctx.fillStyle = '#c8323c'; ctx.beginPath(); ctx.moveTo(-5, -9); ctx.lineTo(5, -9); ctx.lineTo(7, -19); ctx.fill();
   ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(7, -19, 1.8, 0, 7); ctx.fill();
-  ctx.fillStyle = big ? '#e8b64c' : '#b98a4a'; ctx.fillRect(4, -4, 9, 8);   // parcel
-  ctx.fillStyle = '#c8323c'; ctx.fillRect(7.6, -4, 1.8, 8);
+  if (e.carry){ ctx.fillStyle = e.big ? '#e8b64c' : '#b98a4a'; ctx.fillRect(4, -4, 9, 8); ctx.fillStyle = '#c8323c'; ctx.fillRect(7.6, -4, 1.8, 8); }
   ctx.restore();
-  if (big && label){ ctx.font = '600 10px Inter'; ctx.fillStyle = '#e8b64c'; ctx.fillText(label, x + 14, y - 14); }
+  if (e.big && e.carry && e.label){ ctx.font = '700 12px Inter'; ctx.textAlign = 'left'; ctx.fillStyle = '#ffe6a6'; ctx.fillText(e.label, e.x + 16, y - 24); }
 }
-const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+function updElf(e, dt, now){
+  const [tx, ty] = e.way[e.i](), dx = tx - e.x, dy = ty - e.y, d = Math.hypot(dx, dy), st = e.speed * dt * (e.boost > now ? 1.8 : 1);
+  if (Math.abs(dx) > 1) e.face = Math.sign(dx);
+  if (d > st){ e.x += dx / d * st; e.y += dy / d * st; return true; }
+  e.x = tx; e.y = ty; e.i++;
+  if (e.i === 2) e.carry = true;
+  if (e.i === 3){ e.carry = false; if (e.big){ packages++; if (desks[e.to]) desks[e.to].glow = 1; } notify(e.to, now); }
+  return e.i < e.way.length;
+}
+
+// ---------- random events (registered by events-*.js) ----------
+const EVENTS = []; let activeEvents = [], nextEvent = performance.now() + 5000;
+function startEvent(ev, now){ const st = ev.start(now); if (st) activeEvents.push({ev, st}); return !!st; }
+function triggerEvent(name){ const ev = EVENTS.find(e => e.name === name); return !!ev && startEvent(ev, performance.now()); }
+function updEvents(dt, now){
+  if (!reduce && now > nextEvent){ nextEvent = now + (running ? 7000 : 14000) + Math.random() * 6000;
+    const free = EVENTS.filter(e => !activeEvents.some(a => a.ev === e));
+    if (free.length && activeEvents.length < 2) startEvent(free[Math.random() * free.length | 0], now); }
+  activeEvents = activeEvents.filter(a => a.ev.update(a.st, dt, now) !== false);
+}
+
+// ---------- frame loop ----------
 let last = performance.now(), ambientAcc = 0;
 function frame(now){
-  const dt = Math.min(50, now - last); last = now;
-  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // ambient traffic: every active agent constantly ships token parcels to and from the hub
+  const dt = Math.min(.05, (now - last) / 1000); last = now;
+  ctx.setTransform(devicePixelRatio * scale, 0, 0, devicePixelRatio * scale, 0, 0);
+  if (mapImg) ctx.drawImage(mapImg, 0, 0, W, H);
+  for (const d of DOORS) if (d.flash > 0){ ctx.fillStyle = `rgba(255,214,120,${d.flash * .5})`;
+    ctx.beginPath(); ctx.arc(d.ix, d.iy - (d.side === 'top' ? 20 : 0), 34, 0, 7); ctx.fill(); d.flash = Math.max(0, d.flash - dt * 2); }
+  const working = Object.values(chars).filter(c => c.status === 'work'); sfx.tick(dt, working.length);
   if (running && !reduce){
-    ambientAcc += dt * active.size;
-    while (ambientAcc > 260){ ambientAcc -= 260;
-      const ids = [...active]; const a = ids[Math.random() * ids.length | 0];
-      if (a && a !== 'oberelf') Math.random() < .5 ? courier(a, 'oberelf') : courier('oberelf', a);
-      else if (a) { const o = Object.keys(stations).filter(k => stations[k].kind === 'spec'); courier('oberelf', o[Math.random() * o.length | 0]); }
+    ambientAcc += dt * 1000 * working.length;
+    while (ambientAcc > 420){ ambientAcc -= 420;
+      const c = working[Math.random() * working.length | 0], other = c.a.id === 'oberelf'
+        ? Object.keys(chars).filter(k => k !== 'oberelf')[Math.random() * (Object.keys(chars).length - 1) | 0] : 'oberelf';
+      Math.random() < .5 ? courier(c.a.id, other) : courier(other, c.a.id);
     }
   }
-  couriers = couriers.filter(c => {
-    c.t += dt / c.dur; const k = ease(Math.min(1, c.t));
-    const nx = -(c.y2 - c.y1), ny = c.x2 - c.x1, n = Math.hypot(nx, ny) || 1;
-    const arc = Math.sin(k * Math.PI) * c.lane;
-    const x = c.x1 + (c.x2 - c.x1) * k + nx / n * arc, y = c.y1 + (c.y2 - c.y1) * k + ny / n * arc - Math.abs(Math.sin(now / 60 + c.hop)) * 2;
-    ctx.globalAlpha = .2; ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(x, y + 16, 7, 2, 0, 0, 7); ctx.fill(); ctx.globalAlpha = 1;
-    drawElf(x, y, now / 45 + c.hop, c.color, c.big, c.label);
-    if (c.t >= 1){ if (c.big){ packages++; ping(c.to); } return false; }
-    return true;
-  });
-  // render streamed text at most once per frame
-  for (const s of Object.values(stations)) if (s.dirty){ s.dirty = false;
-    s.el.querySelector('.tx').textContent = s.buf.slice(-140);
-    s.el.querySelector('.bar i').style.width = Math.min(100, s.tok / s.max * 100) + '%'; }
-  $('#kActive').textContent = active.size; $('#kTok').textContent = tokens.toLocaleString('de-DE'); $('#kPak').textContent = packages;
-  if (running){ const sec = (now - t0) / 1000; $('#kTime').textContent = sec.toFixed(1).replace('.', ',') + ' s'; $('#kRate').textContent = Math.round(tokens / Math.max(sec, .1)); }
+  Object.values(chars).forEach(c => updChar(c, dt)); updBoss(dt, now); updEvents(dt, now);
+  couriers = couriers.filter(e => updElf(e, dt, now));
+  Object.values(desks).forEach(d => drawDesk(d, now));
+  activeEvents.forEach(a => a.ev.floor && a.ev.floor(a.st, now));
+  const sprites = [...Object.values(chars).map(c => ({y: c.y, draw: () => drawChar(c, now)})), {y: boss.y, draw: () => drawBoss(now)},
+                   ...couriers.map(e => ({y: e.y + 18, draw: () => drawElf(e, now)})),
+                   ...activeEvents.flatMap(a => a.ev.sprites ? a.ev.sprites(a.st, now) : [])];
+  sprites.sort((a, b) => a.y - b.y).forEach(s => s.draw());
+  activeEvents.forEach(a => a.ev.draw && a.ev.draw(a.st, now));
+  Object.values(chars).forEach(drawTag); drawTag(boss);
+  for (const c of Object.values(chars)){
+    if (c.dirty){ c.dirty = false; c.lines = wrapText(c.buf.slice(-260), 32, 3); }
+    if (c.status === 'work' && c.state === 'work') drawScreen(c);
+  }
+  Object.values(chars).forEach(c => drawBubble(c, now)); drawBubble(boss, now);
+  $('#kActive').textContent = working.length; $('#kTok').textContent = tokens.toLocaleString('en-US'); $('#kPak').textContent = packages;
+  if (running){ const sec = (now - t0) / 1000; $('#kTime').textContent = sec.toFixed(1) + ' s'; $('#kRate').textContent = Math.round(tokens / Math.max(sec, .1)); }
+  if (selected && now % 250 < 20) fillCard();
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-function ping(id){ const el = stations[id]?.el; if (!el) return; el.classList.remove('ping'); void el.offsetWidth; el.classList.add('ping'); }
-function setState(id, cls, label){ const s = stations[id]; if (!s) return;
-  s.el.classList.remove('work', 'done', 'err'); if (cls) s.el.classList.add(cls); s.el.querySelector('.pill').textContent = label; }
+
+// ---------- click a character: short role card ----------
+function world(ev){ const b = canvas.getBoundingClientRect(); return [(ev.clientX - b.left) / scale, (ev.clientY - b.top) / scale]; }
+function hit(x, y){
+  let best = null, bd = 40;
+  for (const c of [...Object.values(chars), boss]){ const d = Math.hypot(c.x - x, c.y - 30 - y); if (d < bd){ bd = d; best = c; } }
+  if (best) return best;
+  const d = Object.values(desks).find(d => Math.abs(x - d.x) < d.w / 2 && Math.abs(y - d.y) < d.h / 2);
+  return d && (chars[d.a.id] || {a: d.a, d, status: 'idle', tok: 0, buf: '', label: '', desk: true});
+}
+const STATUS = {idle: 'Idle, wandering', work: 'Working', done: 'Done', err: 'Error'};
+function fillCard(){
+  const c = selected, card = $('#card');
+  card.querySelector('.ic').textContent = c.a.icon; card.querySelector('.nm').textContent = c.a.name;
+  card.querySelector('.rl').textContent = c.a.title;
+  card.querySelector('.dk').textContent = c.d?.name || c.a.name;
+  card.querySelector('.stt').textContent = c.desk ? 'Station' : (STATUS[c.status] || c.status) + (c.label ? ` · ${c.label}` : '');
+  card.querySelector('.tk').textContent = Math.round(c.tok).toLocaleString('en-US');
+  card.querySelector('.tx').textContent = c.buf.slice(-500);
+}
+function closeCard(){ selected = null; $('#card').hidden = true; }
+canvas.addEventListener('click', ev => {
+  const [x, y] = world(ev), c = hit(x, y); if (!c){ closeCard(); return; }
+  selected = c; fillCard(); const card = $('#card'); card.hidden = false;
+  const b = canvas.getBoundingClientRect(), wb = wrap.getBoundingClientRect();
+  const left = Math.min(ev.clientX - wb.left + 14, wb.width - card.offsetWidth - 6), top = Math.min(ev.clientY - wb.top + 14, b.bottom - wb.top - card.offsetHeight - 6);
+  card.style.left = Math.max(6, left) + 'px'; card.style.top = Math.max(6, top) + 'px';
+});
+canvas.addEventListener('mousemove', ev => { const [x, y] = world(ev); canvas.style.cursor = hit(x, y) ? 'pointer' : 'default'; });
+$('#card .x').onclick = closeCard; addEventListener('keydown', e => e.key === 'Escape' && closeCard());
 
 // ---------- log ----------
 function log(html, cls){ const d = document.createElement('div'); const sec = t0 ? ((performance.now() - t0) / 1000).toFixed(1) : '0.0';
-  d.innerHTML = `<span class="t">${sec.padStart(5)}s</span> <span class="${cls || ''}">${html}</span>`; const L = $('#log'); L.appendChild(d); L.scrollTop = L.scrollHeight; }
-const nm = id => stations[id]?.a.name || id;
+  d.innerHTML = `<span class="t">${sec.padStart(5)}s</span> <span class="${cls || ''}"></span>`; d.lastChild.textContent = html;
+  const L = $('#log'); L.appendChild(d); L.scrollTop = L.scrollHeight; }
+const nm = id => (chars[id] || desks[id])?.a.name || id;
 
 // ---------- events ----------
 function onEvent(e){
+  const now = performance.now(), c = chars[e.agent];
   switch (e.type){
     case 'roster': break;
     case 'phase': $('#phase').textContent = e.label; log('▶ ' + e.label, 'g'); break;
     case 'handoff': courier(e.from, e.to, e.label, true); log(`📦 ${nm(e.from)} → ${nm(e.to)}: ${e.label}`); break;
-    case 'agent_start': { const s = stations[e.agent]; s.buf = ''; s.tok = 0; s.max = /^(Kapitel|Executive)/.test(e.label) ? MAXTOK.chapter : e.label === 'Kundenverständnis' ? MAXTOK.intake : s.kind === 'critic' ? MAXTOK.critic : MAXTOK.spec;
-      active.add(e.agent); setState(e.agent, 'work', 'arbeitet'); log(`✍ ${nm(e.agent)} beginnt: ${e.label}`); break; }
-    case 'delta': { const s = stations[e.agent]; s.buf += e.text; s.tok += Math.max(1, e.text.length / 4); tokens += Math.max(1, Math.round(e.text.length / 4)); s.dirty = true; break; }
-    case 'agent_done': active.delete(e.agent); setState(e.agent, 'done', 'fertig'); stations[e.agent].tok = stations[e.agent].max; stations[e.agent].dirty = true;
-      log(`✔ ${nm(e.agent)} fertig (${e.tokens} Tokens, ${String(e.seconds).replace('.', ',')} s)`, 'ok'); break;
-    case 'agent_error': setState(e.agent, 'err', 'Fehler'); log(`✖ ${nm(e.agent)}: ${e.error}`, 'e'); break;
+    case 'agent_start': if (!c) break;
+      c.buf = ''; c.tok = 0; c.lines = []; c.label = e.label;
+      c.max = /^(Chapter|Executive)/.test(e.label) ? MAXTOK.chapter : e.label === 'Client understanding' ? MAXTOK.intake : c.kind === 'critic' ? MAXTOK.critic : MAXTOK.spec;
+      if (c.jobs++ > 0) curse(c, now, true);   // a second job in one run is always worth a curse
+      c.status = 'work'; goWork(c); sfx.babble(e.agent); log(`✍ ${c.a.name} starts: ${e.label}`); break;
+    case 'delta': if (!c) break; c.buf += e.text; c.tok += Math.max(1, e.text.length / 4); tokens += Math.max(1, Math.round(e.text.length / 4)); c.dirty = true; break;
+    case 'agent_done': if (!c) break; if (c.status !== 'err') c.status = 'done'; c.tok = c.max; goIdle(c);
+      log(`✔ ${c.a.name} done (${e.tokens} tokens, ${e.seconds} s)`, 'ok'); break;
+    case 'agent_error': if (!c) break; c.status = 'err'; log(`✖ ${c.a.name}: ${e.error}`, 'e'); break;
     case 'final': finalMd = e.markdown; break;
-    case 'done': running = false; setState('versand', 'done', 'versandt');
-      log(`🎁 Angebot fertig: ${e.agents} Agenten-Läufe, ${e.tokens.toLocaleString('de-DE')} Tokens, ${String(e.seconds).replace('.', ',')} s`, 'g');
-      $('#phase').textContent = 'Angebot versandbereit'; showResult(); break;
-    case 'fatal': running = false; log('✖ ' + e.error, 'e'); $('#phase').textContent = 'Abgebrochen'; break;
+    case 'done': running = false; if (desks.versand) desks.versand.glow = 1;
+      log(`🎁 Proposal ready: ${e.agents} agent runs, ${e.tokens.toLocaleString('en-US')} tokens, ${e.seconds} s`, 'g');
+      $('#phase').textContent = 'Proposal ready to ship'; showResult(); break;
+    case 'fatal': running = false; log('✖ ' + e.error, 'e'); $('#phase').textContent = 'Aborted'; $('#go').disabled = false; break;
   }
 }
 function showResult(){
@@ -228,9 +594,8 @@ function showResult(){
 async function run(){
   const rfp = $('#rfp').value.trim(); if (!rfp){ $('#rfp').focus(); return; }
   $('#go').disabled = true; $('#result').classList.remove('show'); $('#log').innerHTML = '';
-  tokens = 0; packages = 0; couriers = []; active.clear(); finalMd = '';
+  tokens = 0; packages = 0; finalMd = '';
   layout(await (await fetch('/api/roster')).json());
-  setState('poststelle', 'done', 'eingegangen');
   running = true; t0 = performance.now();
   const res = await fetch('/api/run', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({rfp})});
   if (!res.ok){ running = false; log('✖ Server: ' + res.status, 'e'); $('#go').disabled = false; return; }
@@ -243,11 +608,15 @@ async function run(){
 }
 
 $('#go').onclick = run;
+const sndLabel = () => $('#snd').textContent = sfx.on ? '🔊 Sound on' : '🔇 Sound off'; sndLabel();
+$('#snd').onclick = () => { sfx.toggle(); sndLabel(); };
 $('#sample').onclick = async () => { $('#rfp').value = await (await fetch('/api/sample')).text(); };
 $('#file').onchange = async e => { const f = e.target.files[0]; if (f) $('#rfp').value = await f.text(); };
-$('#dl').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([finalMd], {type: 'text/markdown'})); a.download = 'Angebot-Wichtel.md'; a.click(); };
-$('#pdf').onclick = () => { const w = open(''); w.document.write(`<html><head><title>Angebot Wichtel GmbH & Co. KG</title><style>body{font:12pt/1.55 Georgia,serif;max-width:760px;margin:40px auto;color:#1d2433}h1{color:#c8323c}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}</style></head><body>${$('#doc').innerHTML}</body></html>`); w.document.close(); w.print(); };
+$('#dl').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([finalMd], {type: 'text/markdown'})); a.download = 'Proposal-Wichtel.md'; a.click(); };
+$('#pdf').onclick = () => { const w = open(''); w.document.write(`<html><head><title>Proposal Wichtel GmbH & Co. KG</title><style>body{font:12pt/1.55 Georgia,serif;max-width:760px;margin:40px auto;color:#1d2433}h1{color:#c8323c}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}</style></head><body>${$('#doc').innerHTML}</body></html>`); w.document.close(); w.print(); };
 fetch('/api/roster').then(r => r.json()).then(layout);
 </script>
+<script src="/events-a.js"></script>
+<script src="/events-b.js"></script>
 </body>
 </html>
