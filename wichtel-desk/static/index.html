@@ -118,6 +118,7 @@ function layout(r){
     el.className = 'st' + (kind === 'hub' ? ' hub' : '');
     el.style.left = x + '%'; el.style.top = y + '%';
     el.innerHTML = `<div class="top"><div class="ic">${a.icon}</div><div style="min-width:0"><div class="nm">${a.name}</div><div class="rl">${a.title}</div></div><div class="pill">bereit</div></div><div class="tx"></div><div class="bar"><i></i></div>`;
+    if (a.skills && a.skills.length) el.title = 'Fähigkeiten: ' + a.skills.join(', ');
     floor.appendChild(el);
     stations[a.id] = {a, el, x, y, kind, buf: '', tok: 0, max: MAXTOK[kind] || 1100};
   };

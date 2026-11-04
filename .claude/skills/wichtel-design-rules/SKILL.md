@@ -18,6 +18,11 @@ node validate-elves.js
 
 Der Fähigkeitskatalog steht nur in `elves.json` (`rfp_aspekte`).
 
+Die Spezialisten des Wichtel-Desks (`wichtel-desk/swarm.py`) müssen dort ebenfalls als Wichtel mit
+identischem Namen stehen. `swarm.py` lädt ihre Fähigkeiten beim Start aus `elves.json` und bricht mit
+einer Fehlermeldung ab, wenn ein Spezialist fehlt, mehr als 3 Fähigkeiten hat oder eine Fähigkeit
+außerhalb des Katalogs nutzt. Wer einen Desk-Spezialisten hinzufügt, trägt ihn also zuerst in `elves.json` ein.
+
 ## Urteilsregeln (nicht automatisch prüfbar)
 
 1. **Spezialisierung vor Allrounder.** Mehr Fähigkeiten bedeuten nicht mehr Qualität. Drei Fähigkeiten nur, wenn die Kombination fachlich zusammenpasst.
