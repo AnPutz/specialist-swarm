@@ -146,6 +146,16 @@ def _chapter_headings(text):
     return re.sub(r"^# (?!#)", "## ", text, flags=re.M)
 
 
+MAX_KEY_FACTS = 10
+
+
+def _key_facts(text):
+    """'## Key Facts' section with at most MAX_KEY_FACTS bullets, or '' if the model gave none."""
+    bullets = [re.sub(r"^\s*[-*•]\s+", "- ", line.strip())
+               for line in text.splitlines() if re.match(r"^\s*[-*•]\s+\S", line)]
+    return "## Key Facts\n\n" + "\n".join(bullets[:MAX_KEY_FACTS]) if bullets else ""
+
+
 def _rfp_block(rfp):
     return f"<rfp>\n{rfp}\n</rfp>"
 
@@ -236,8 +246,21 @@ def run_swarm(rfp: str, emit) -> str:
             if ed_id != HUB["id"]:
                 say({"type": "handoff", "from": ed_id, "to": HUB["id"], "label": "Chapter done"})
     client_line = next((line.strip("# ").strip() for line in rfp.splitlines() if line.strip()), "RFP")
-    draft = (f"# Proposal by Wichtel GmbH & Co. KG\n\n**Re:** {client_line}\n\n"
-             + "\n\n".join(_chapter_headings(f.result().strip()) for f in chapters)
+    body = "\n\n".join(_chapter_headings(f.result().strip()) for f in chapters)
+
+    # Key facts: one short summary at the very end, written from the finished chapters only
+    facts_raw = agent(
+        HUB["id"],
+        f"You are {HUB['name']}, bid manager at {COMPANY} {STYLE}",
+        f"<proposal>\n{body}\n</proposal>\n\nWrite the key facts of this proposal as a Markdown bullet list "
+        f"with at most {MAX_KEY_FACTS} bullets, each at most 20 words. Use only facts and numbers that appear "
+        "in the proposal, never new ones. Cover total price, timeline and go-live, load or volume, team size, "
+        "contract terms, main risks and our main differentiator. Output only the bullets, no heading.",
+        claude.fast_model, 500, "Key facts")
+    facts = _key_facts(facts_raw)
+
+    draft = (f"# Proposal by Wichtel GmbH & Co. KG\n\n**Re:** {client_line}\n\n{body}"
+             + (f"\n\n{facts}" if facts else "")
              + "\n\nKind regards from the workshop\n\n**Wichtel GmbH & Co. KG**, North Pole")
 
     # Phase 3: critics in parallel, no rewrite loop (POC): their notes go into the annex
