@@ -3,7 +3,8 @@
 //
 // Name = Vorname + Beiname, Beiname = Fähigkeits-Stamm + Fabeltier
 //   z. B. "Rudi Routenfuchs" (Routenplanung), "Reineke Siegeleule" (Vertrag und SLA)
-// 100 Vornamen x 8 Fähigkeiten x 14 Tiere = 11200 eindeutige Kombinationen (> 9999).
+// 100 Vornamen x 15 Fähigkeiten x 14 Tiere = 21000 eindeutige Kombinationen (> 9999).
+// Jede Fähigkeit hier muss im Katalog (rfp_aspekte) von elves.json stehen.
 //
 // Die handgepflegten Wichtel aus elves.json kommen zuerst in den Pool,
 // der Rest wird deterministisch (--seed) aufgefüllt.
@@ -42,6 +43,13 @@ const FAEHIGKEITEN = {
   "Vertrag und SLA": { stamm: "Siegel", rolle: "Vertragswichtel" },
   "Angebotstext": { stamm: "Feder", rolle: "Bid-Autor" },
   "Wettbewerbsanalyse": { stamm: "Späher", rolle: "Marktbeobachter" },
+  "Architektur und Skalierung": { stamm: "Turm", rolle: "Architekt" },
+  "Sicherheit und Datenschutz": { stamm: "Wacht", rolle: "Sicherheitswichtel" },
+  "Storefront und UX": { stamm: "Schau", rolle: "UX-Wichtel" },
+  "Integration": { stamm: "Brücken", rolle: "Integrations-Wichtel" },
+  "Betrieb und Hosting": { stamm: "Betriebs", rolle: "Betriebswichtel" },
+  "Projektplanung": { stamm: "Meilen", rolle: "Projektplaner" },
+  "Team und Staffing": { stamm: "Mannschafts", rolle: "Staffing-Wichtel" },
 };
 
 function mulberry32(seed) {

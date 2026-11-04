@@ -26,8 +26,14 @@ if (wichtel.length > MAX_POOL) err(`${wichtel.length} Wichtel (Pool-Maximum ${MA
 
 const covered = new Set();
 const names = new Set();
+const ids = new Set();
 for (const w of wichtel) {
   const n = w.name || "(ohne Name)";
+  if (w.id !== undefined) {
+    if (!/^[a-z0-9-]+$/.test(w.id)) err(`${n}: id "${w.id}" ist ungültig (nur a-z, 0-9, -)`);
+    if (ids.has(w.id)) err(`${n}: id "${w.id}" doppelt vergeben`);
+    ids.add(w.id);
+  }
   if (names.has(n)) err(`${n}: Name doppelt vergeben`);
   names.add(n);
   if (!w.rolle) err(`${n}: Rolle fehlt`);

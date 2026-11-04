@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wichtel-desk",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-X", "utf8", "wichtel-desk/server.py"],
+      "port": 8765
+    }
+  ]
+}

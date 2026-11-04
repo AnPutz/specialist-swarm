@@ -11,12 +11,15 @@ import queue
 import re
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import parse_qs, urlsplit
 
 from swarm import roster, run_swarm
 
 HERE = pathlib.Path(__file__).resolve().parent
 PORT = int(os.environ.get("PORT", 8765))
 MAX_RFP_CHARS = 60_000
+SAMPLES = {"wunschzettel": "rfp-santa.md", "kinder": "rfp-weihnachtsmann-kinder.md"}
+DEFAULT_SAMPLE = "wunschzettel"
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -28,13 +31,19 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if self.path in ("/", "/index.html"):
+        url = urlsplit(self.path)
+        if url.path in ("/", "/index.html"):
             self._send(200, (HERE / "static" / "index.html").read_bytes(), "text/html; charset=utf-8")
-        elif re.fullmatch(r"/[a-z0-9-]+\.js", self.path) and (HERE / "static" / self.path[1:]).is_file():
-            self._send(200, (HERE / "static" / self.path[1:]).read_bytes(), "text/javascript; charset=utf-8")
-        elif self.path == "/api/sample":
-            self._send(200, (HERE / "samples" / "rfp-santa.md").read_bytes(), "text/plain; charset=utf-8")
-        elif self.path == "/api/roster":
+        elif re.fullmatch(r"/[a-z0-9-]+\.js", url.path) and (HERE / "static" / url.path[1:]).is_file():
+            self._send(200, (HERE / "static" / url.path[1:]).read_bytes(), "text/javascript; charset=utf-8")
+        elif url.path == "/api/sample":
+            # Fixed whitelist: the client never supplies a file path.
+            name = parse_qs(url.query).get("name", [DEFAULT_SAMPLE])[0]
+            if name not in SAMPLES:
+                self._send(404, b"unknown sample", "text/plain")
+            else:
+                self._send(200, (HERE / "samples" / SAMPLES[name]).read_bytes(), "text/plain; charset=utf-8")
+        elif url.path == "/api/roster":
             self._send(200, json.dumps(roster(), ensure_ascii=False).encode(), "application/json")
         else:
             self._send(404, b"not found", "text/plain")

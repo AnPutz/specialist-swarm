@@ -7,38 +7,149 @@
     "Risiko und Ausfall",
     "Vertrag und SLA",
     "Angebotstext",
-    "Wettbewerbsanalyse"
+    "Wettbewerbsanalyse",
+    "Architektur und Skalierung",
+    "Sicherheit und Datenschutz",
+    "Storefront und UX",
+    "Integration",
+    "Betrieb und Hosting",
+    "Projektplanung",
+    "Team und Staffing"
   ],
   "wichtel": [
     {
       "name": "Rudi Routenfuchs",
       "rolle": "Logistik-Planer",
-      "faehigkeiten": ["Routenplanung", "Risiko und Ausfall"]
+      "faehigkeiten": [
+        "Routenplanung",
+        "Risiko und Ausfall"
+      ]
     },
     {
       "name": "Paragraphus",
       "rolle": "Rechtswichtel",
-      "faehigkeiten": ["Arbeitsrecht", "Vertrag und SLA"]
+      "faehigkeiten": [
+        "Arbeitsrecht",
+        "Vertrag und SLA"
+      ]
     },
     {
       "name": "Schrauber Sepp",
       "rolle": "Flotten-Ingenieur",
-      "faehigkeiten": ["Flottentechnik", "Risiko und Ausfall"]
+      "faehigkeiten": [
+        "Flottentechnik",
+        "Risiko und Ausfall"
+      ]
     },
     {
       "name": "Zimtstern",
       "rolle": "Finanzwichtel",
-      "faehigkeiten": ["Kalkulation"]
+      "faehigkeiten": [
+        "Kalkulation"
+      ]
     },
     {
       "name": "Feder Fine",
       "rolle": "Bid-Autorin",
-      "faehigkeiten": ["Angebotstext", "Wettbewerbsanalyse", "Vertrag und SLA"]
+      "faehigkeiten": [
+        "Angebotstext",
+        "Wettbewerbsanalyse",
+        "Vertrag und SLA"
+      ]
     },
     {
       "name": "Späher Spekulatius",
       "rolle": "Marktbeobachter",
-      "faehigkeiten": ["Wettbewerbsanalyse"]
+      "faehigkeiten": [
+        "Wettbewerbsanalyse"
+      ]
+    },
+    {
+      "id": "rudolph",
+      "name": "Rudolph",
+      "rolle": "Performance & Lastspitzen",
+      "faehigkeiten": [
+        "Architektur und Skalierung",
+        "Flottentechnik"
+      ]
+    },
+    {
+      "id": "zahnfee",
+      "name": "Die Zahnfee",
+      "rolle": "Kalkulation & Pricing",
+      "faehigkeiten": [
+        "Kalkulation"
+      ]
+    },
+    {
+      "id": "nornen",
+      "name": "Die Nornen",
+      "rolle": "Vertrag & Haftung",
+      "faehigkeiten": [
+        "Vertrag und SLA",
+        "Arbeitsrecht"
+      ]
+    },
+    {
+      "id": "drache",
+      "name": "Der Drache",
+      "rolle": "Security & Datenschutz",
+      "faehigkeiten": [
+        "Sicherheit und Datenschutz",
+        "Risiko und Ausfall"
+      ]
+    },
+    {
+      "id": "abraxas",
+      "name": "Rabe Abraxas",
+      "rolle": "Wettbewerbsanalyse",
+      "faehigkeiten": [
+        "Wettbewerbsanalyse",
+        "Angebotstext"
+      ]
+    },
+    {
+      "id": "einhorn",
+      "name": "Das Einhorn",
+      "rolle": "UX & Storefront",
+      "faehigkeiten": [
+        "Storefront und UX"
+      ]
+    },
+    {
+      "id": "troll",
+      "name": "Brückentroll Grimm",
+      "rolle": "Integration",
+      "faehigkeiten": [
+        "Integration"
+      ]
+    },
+    {
+      "id": "kobold",
+      "name": "Kobold Pumuckel",
+      "rolle": "Betrieb & SLA",
+      "faehigkeiten": [
+        "Betrieb und Hosting",
+        "Risiko und Ausfall"
+      ]
+    },
+    {
+      "id": "sandmann",
+      "name": "Der Sandmann",
+      "rolle": "Projektplan",
+      "faehigkeiten": [
+        "Projektplanung",
+        "Routenplanung"
+      ]
+    },
+    {
+      "id": "riese",
+      "name": "Riese Rübezahl",
+      "rolle": "Team & Staffing",
+      "faehigkeiten": [
+        "Team und Staffing",
+        "Arbeitsrecht"
+      ]
     }
   ]
 }

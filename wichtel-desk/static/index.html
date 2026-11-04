@@ -81,7 +81,8 @@ button:disabled{opacity:.5;cursor:default}
     <textarea id="rfp" placeholder="Paste an RFP or upload a file (.md/.txt) …"></textarea>
     <div class="row">
       <label class="btn">Upload file<input id="file" type="file" accept=".md,.txt,.markdown,text/plain" hidden></label>
-      <button id="sample">Sample: Santa Claus</button>
+      <button class="sample" data-sample="wunschzettel">Sample: Wish lists</button>
+      <button class="sample" data-sample="kinder">Sample: Children</button>
     </div>
     <button id="go" class="primary">Write the proposal</button>
     <div id="phase"></div>
@@ -91,7 +92,7 @@ button:disabled{opacity:.5;cursor:default}
     <div class="hint">Click a character to see its role</div>
     <div id="card" hidden><button class="x" aria-label="Close">×</button>
       <div class="hd"><span class="ic"></span><div><div class="nm"></div><div class="rl"></div></div></div>
-      <dl><dt>Workstation</dt><dd class="dk"></dd><dt>Status</dt><dd class="stt"></dd><dt>Tokens</dt><dd class="tk"></dd></dl>
+      <dl><dt>Workstation</dt><dd class="dk"></dd><dt class="skt">Skills</dt><dd class="sk"></dd><dt>Status</dt><dd class="stt"></dd><dt>Tokens</dt><dd class="tk"></dd></dl>
       <pre class="tx"></pre>
     </div>
   </section>
@@ -539,6 +540,9 @@ function fillCard(){
   card.querySelector('.ic').textContent = c.a.icon; card.querySelector('.nm').textContent = c.a.name;
   card.querySelector('.rl').textContent = c.a.title;
   card.querySelector('.dk').textContent = c.d?.name || c.a.name;
+  const skills = c.a.skills || [];   // registered elf skills (elves.json); only specialists have them
+  card.querySelector('.skt').hidden = card.querySelector('.sk').hidden = !skills.length;
+  card.querySelector('.sk').textContent = skills.join(', ');
   card.querySelector('.stt').textContent = c.desk ? 'Station' : (STATUS[c.status] || c.status) + (c.label ? ` · ${c.label}` : '');
   card.querySelector('.tk').textContent = Math.round(c.tok).toLocaleString('en-US');
   card.querySelector('.tx').textContent = c.buf.slice(-500);
@@ -610,7 +614,9 @@ async function run(){
 $('#go').onclick = run;
 const sndLabel = () => $('#snd').textContent = sfx.on ? '🔊 Sound on' : '🔇 Sound off'; sndLabel();
 $('#snd').onclick = () => { sfx.toggle(); sndLabel(); };
-$('#sample').onclick = async () => { $('#rfp').value = await (await fetch('/api/sample')).text(); };
+document.querySelectorAll('.sample').forEach(b => b.onclick = async () => {
+  $('#rfp').value = await (await fetch('/api/sample?name=' + encodeURIComponent(b.dataset.sample))).text();
+});
 $('#file').onchange = async e => { const f = e.target.files[0]; if (f) $('#rfp').value = await f.text(); };
 $('#dl').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([finalMd], {type: 'text/markdown'})); a.download = 'Proposal-Wichtel.md'; a.click(); };
 $('#pdf').onclick = () => { const w = open(''); w.document.write(`<html><head><title>Proposal Wichtel GmbH & Co. KG</title><style>body{font:12pt/1.55 Georgia,serif;max-width:760px;margin:40px auto;color:#1d2433}h1{color:#c8323c}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}</style></head><body>${$('#doc').innerHTML}</body></html>`); w.document.close(); w.print(); };
