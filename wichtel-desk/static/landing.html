@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wichtel RFP Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg1:#0a1020; --bg2:#0d1730; --red:#c8323c; --gold:#e8b64c; --text:#eef1f8; --mute:#a9b3cc; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--bg1); }
+  body {
+    font-family: Inter, system-ui, sans-serif; color: var(--text); line-height: 1.45;
+    min-height: 100vh; padding: 24px 16px; overflow-x: hidden;
+    background: radial-gradient(ellipse at top, var(--bg2), var(--bg1) 70%);
+  }
+  main { max-width: 980px; margin: 0 auto; }
+  .hero { text-align: center; padding: 8px 0 20px; }
+  .hero svg { width: 56px; height: 56px; }
+  h1 { font-size: clamp(1.7rem, 5vw, 2.6rem); font-weight: 800; margin: 8px 0 6px; }
+  h1 span { color: var(--gold); }
+  .pitch { color: var(--mute); max-width: 600px; margin: 0 auto 18px; }
+  .btn {
+    display: inline-block; background: var(--red); color: #fff; text-decoration: none;
+    font-weight: 600; padding: 12px 26px; border-radius: 10px; border: 1px solid var(--gold);
+  }
+  .btn:hover { filter: brightness(1.12); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 8px 0 18px; }
+  .card { background: rgba(255,255,255,.04); border: 1px solid rgba(232,182,76,.25); border-radius: 12px; padding: 16px; }
+  h2 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  ul { padding-left: 18px; font-size: .92rem; }
+  li { margin-bottom: 6px; }
+  b { color: var(--gold); font-weight: 600; }
+  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-bottom: 20px; }
+  .nums div { background: rgba(200,50,60,.12); border: 1px solid rgba(200,50,60,.4); border-radius: 12px; padding: 12px 6px; }
+  .nums strong { display: block; font-size: 1.3rem; color: var(--gold); }
+  .nums small { color: var(--mute); font-size: .75rem; }
+  .cta { text-align: center; }
+  @media (max-width: 640px) { .cols { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M12 46 L32 6 L52 46 Z" fill="#c8323c"/>
+      <rect x="8" y="44" width="48" height="9" rx="4.5" fill="#eef1f8"/>
+      <circle cx="32" cy="7" r="5" fill="#e8b64c"/>
+    </svg>
+    <h1>Wichtel GmbH &amp; Co. KG <span>RFP Desk</span></h1>
+    <p class="pitch">Upload an RFP, watch a swarm of 20 fable-creature agents write the proposal live.</p>
+    <a class="btn" href="/">Open the bid floor</a>
+  </section>
+
+  <section class="cols">
+    <div class="card">
+      <h2>Problem</h2>
+      <ul>
+        <li>Answering RFPs takes days of expert time.</li>
+        <li>Knowledge sits with many specialists: pricing, security, logistics, legal...</li>
+        <li>First drafts are slow and inconsistent.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Solution</h2>
+      <ul>
+        <li><b>1.</b> Intake + 10 specialists in parallel (Haiku). <b>2.</b> 6 editors write one chapter each in parallel (Sonnet). <b>3.</b> 3 critics review (Haiku).</li>
+        <li>Streamed live to an animated office map with a Claude overseer; result as Markdown / PDF.</li>
+        <li>Only the pricing specialist states prices, so parallel chapters stay consistent.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="nums">
+    <div><strong>~35 s</strong><small>end to end</small></div>
+    <div><strong>20</strong><small>agent runs</small></div>
+    <div><strong>~16–18k</strong><small>output tokens</small></div>
+  </section>
+  <p class="cta" style="color:var(--mute);font-size:.75rem;margin-bottom:14px">Measured on the sample RFP.</p>
+
+  <p class="cta"><a class="btn" href="/">Open the bid floor</a></p>
+</main>
+</body>
+</html>

@@ -66,6 +66,7 @@ button:disabled{opacity:.5;cursor:default}
 <header>
   <div class="logo">🎁</div>
   <div class="brand"><b>Wichtel GmbH &amp; Co. KG</b><div>North Pole bid floor · commerce consulting for fable creatures since 1823</div></div>
+  <a class="btn" href="/about" style="text-decoration:none">About</a>
   <button id="snd" title="Toggle sound">🔊 Sound on</button>
   <div class="kpis">
     <div class="kpi"><span>Active agents</span><b id="kActive">0</b></div>
@@ -447,7 +448,18 @@ function courier(from, to, label, big){
   const A = anchor(from), B = anchor(to); if (!A || !B) return;
   const [ax, ay] = A(), [bx, by] = B(), d1 = nearestDoor(ax, ay), d2 = nearestDoor(bx, by);
   d1.flash = 1; d2.flash = Math.max(d2.flash || 0, .4);
-  couriers.push({x: d1.ox, y: d1.oy, way: [() => [d1.ix, d1.iy], A, B, () => [d2.ix, d2.iy], () => [d2.ox, d2.oy]], i: 0,
+  // chaotic routes: random detours between stops instead of straight lines through the middle
+  const det = (P, Q) => { const [px, py] = P(), [qx, qy] = Q(), t = .2 + Math.random() * .6;
+    const x = Math.min(1440 - WALL - 40, Math.max(WALL + 40, px + (qx - px) * t + (Math.random() - .5) * 520));
+    const y = Math.min(840 - WALL - 30, Math.max(WALL + 60, py + (qy - py) * t + (Math.random() - .5) * 360));
+    return () => [x, y]; };
+  const Din = () => [d1.ix, d1.iy], Dout = () => [d2.ix, d2.iy], way = [Din];
+  for (const [P, Q] of [[Din, A], [A, B], [B, Dout]]){
+    for (let k = Math.random() < .35 ? 2 : 1; k--;) way.push(det(P, Q));
+    way.push(Q); }
+  way.push(() => [d2.ox, d2.oy]);
+  const iA = way.indexOf(A), iB = way.indexOf(B);
+  couriers.push({x: d1.ox, y: d1.oy, way, iA, iB, i: 0, wob: 6 + Math.random() * 14,
     big, label, to, carry: false, speed: (big ? 270 : 330) * (.85 + Math.random() * .3), face: 1,
     color: COLORS[Math.random() * COLORS.length | 0], hop: Math.random() * 6});
 }
@@ -468,10 +480,11 @@ function drawElf(e, now){
 function updElf(e, dt, now){
   const [tx, ty] = e.way[e.i](), dx = tx - e.x, dy = ty - e.y, d = Math.hypot(dx, dy), st = e.speed * dt * (e.boost > now ? 1.8 : 1);
   if (Math.abs(dx) > 1) e.face = Math.sign(dx);
-  if (d > st){ e.x += dx / d * st; e.y += dy / d * st; return true; }
+  if (d > st){ const w = Math.sin(now / 160 + e.hop) * e.wob * dt * 4;  // zig-zag sideways
+    e.x += (dx * st - dy * w) / d; e.y += (dy * st + dx * w) / d; return true; }
   e.x = tx; e.y = ty; e.i++;
-  if (e.i === 2) e.carry = true;
-  if (e.i === 3){ e.carry = false; if (e.big){ packages++; if (desks[e.to]) desks[e.to].glow = 1; } notify(e.to, now); }
+  if (e.i === e.iA + 1) e.carry = true;
+  if (e.i === e.iB + 1){ e.carry = false; if (e.big){ packages++; if (desks[e.to]) desks[e.to].glow = 1; } notify(e.to, now); }
   return e.i < e.way.length;
 }
 
@@ -480,9 +493,11 @@ const EVENTS = []; let activeEvents = [], nextEvent = performance.now() + 5000;
 function startEvent(ev, now){ const st = ev.start(now); if (st) activeEvents.push({ev, st}); return !!st; }
 function triggerEvent(name){ const ev = EVENTS.find(e => e.name === name); return !!ev && startEvent(ev, performance.now()); }
 function updEvents(dt, now){
-  if (!reduce && now > nextEvent){ nextEvent = now + (running ? 7000 : 14000) + Math.random() * 6000;
-    const free = EVENTS.filter(e => !activeEvents.some(a => a.ev === e));
-    if (free.length && activeEvents.length < 2) startEvent(free[Math.random() * free.length | 0], now); }
+  // while an RFP runs: an event every 1-3 s, often two at once, up to 6 in parallel
+  if (!reduce && now > nextEvent){ nextEvent = now + (running ? 1000 + Math.random() * 2000 : 14000 + Math.random() * 6000);
+    for (let n = running && Math.random() < .4 ? 2 : 1; n--;){
+      const free = EVENTS.filter(e => !activeEvents.some(a => a.ev === e));
+      if (free.length && activeEvents.length < (running ? 6 : 2)) startEvent(free[Math.random() * free.length | 0], now); } }
   activeEvents = activeEvents.filter(a => a.ev.update(a.st, dt, now) !== false);
 }
 

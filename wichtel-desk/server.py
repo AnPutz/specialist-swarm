@@ -34,6 +34,8 @@ class Handler(BaseHTTPRequestHandler):
         url = urlsplit(self.path)
         if url.path in ("/", "/index.html"):
             self._send(200, (HERE / "static" / "index.html").read_bytes(), "text/html; charset=utf-8")
+        elif url.path in ("/about", "/landing.html"):
+            self._send(200, (HERE / "static" / "landing.html").read_bytes(), "text/html; charset=utf-8")
         elif re.fullmatch(r"/[a-z0-9-]+\.js", url.path) and (HERE / "static" / url.path[1:]).is_file():
             self._send(200, (HERE / "static" / url.path[1:]).read_bytes(), "text/javascript; charset=utf-8")
         elif url.path == "/api/sample":
