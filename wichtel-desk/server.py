@@ -8,6 +8,7 @@ import json
 import os
 import pathlib
 import queue
+import re
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlsplit
@@ -17,7 +18,7 @@ from swarm import roster, run_swarm
 HERE = pathlib.Path(__file__).resolve().parent
 PORT = int(os.environ.get("PORT", 8765))
 MAX_RFP_CHARS = 60_000
-SAMPLES = {"wunschzettel": "rfp-weihnachtsmann.md", "kinder": "rfp-weihnachtsmann-kinder.md"}
+SAMPLES = {"wunschzettel": "rfp-santa.md", "kinder": "rfp-weihnachtsmann-kinder.md"}
 DEFAULT_SAMPLE = "wunschzettel"
 
 
@@ -33,6 +34,8 @@ class Handler(BaseHTTPRequestHandler):
         url = urlsplit(self.path)
         if url.path in ("/", "/index.html"):
             self._send(200, (HERE / "static" / "index.html").read_bytes(), "text/html; charset=utf-8")
+        elif re.fullmatch(r"/[a-z0-9-]+\.js", url.path) and (HERE / "static" / url.path[1:]).is_file():
+            self._send(200, (HERE / "static" / url.path[1:]).read_bytes(), "text/javascript; charset=utf-8")
         elif url.path == "/api/sample":
             # Fixed whitelist: the client never supplies a file path.
             name = parse_qs(url.query).get("name", [DEFAULT_SAMPLE])[0]

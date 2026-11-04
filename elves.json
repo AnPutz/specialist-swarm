@@ -65,6 +65,7 @@
       ]
     },
     {
+      "id": "rudolph",
       "name": "Rudolph",
       "rolle": "Performance & Lastspitzen",
       "faehigkeiten": [
@@ -73,6 +74,7 @@
       ]
     },
     {
+      "id": "zahnfee",
       "name": "Die Zahnfee",
       "rolle": "Kalkulation & Pricing",
       "faehigkeiten": [
@@ -80,6 +82,7 @@
       ]
     },
     {
+      "id": "nornen",
       "name": "Die Nornen",
       "rolle": "Vertrag & Haftung",
       "faehigkeiten": [
@@ -88,6 +91,7 @@
       ]
     },
     {
+      "id": "drache",
       "name": "Der Drache",
       "rolle": "Security & Datenschutz",
       "faehigkeiten": [
@@ -96,6 +100,7 @@
       ]
     },
     {
+      "id": "abraxas",
       "name": "Rabe Abraxas",
       "rolle": "Wettbewerbsanalyse",
       "faehigkeiten": [
@@ -104,6 +109,7 @@
       ]
     },
     {
+      "id": "einhorn",
       "name": "Das Einhorn",
       "rolle": "UX & Storefront",
       "faehigkeiten": [
@@ -111,6 +117,7 @@
       ]
     },
     {
+      "id": "troll",
       "name": "Brückentroll Grimm",
       "rolle": "Integration",
       "faehigkeiten": [
@@ -118,6 +125,7 @@
       ]
     },
     {
+      "id": "kobold",
       "name": "Kobold Pumuckel",
       "rolle": "Betrieb & SLA",
       "faehigkeiten": [
@@ -126,6 +134,7 @@
       ]
     },
     {
+      "id": "sandmann",
       "name": "Der Sandmann",
       "rolle": "Projektplan",
       "faehigkeiten": [
@@ -134,6 +143,7 @@
       ]
     },
     {
+      "id": "riese",
       "name": "Riese Rübezahl",
       "rolle": "Team & Staffing",
       "faehigkeiten": [
