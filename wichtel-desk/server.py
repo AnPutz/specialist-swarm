@@ -8,6 +8,7 @@ import json
 import os
 import pathlib
 import queue
+import re
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -29,8 +30,10 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("/", "/index.html"):
             self._send(200, (HERE / "static" / "index.html").read_bytes(), "text/html; charset=utf-8")
+        elif re.fullmatch(r"/[a-z0-9-]+\.js", self.path) and (HERE / "static" / self.path[1:]).is_file():
+            self._send(200, (HERE / "static" / self.path[1:]).read_bytes(), "text/javascript; charset=utf-8")
         elif self.path == "/api/sample":
-            self._send(200, (HERE / "samples" / "rfp-weihnachtsmann.md").read_bytes(), "text/plain; charset=utf-8")
+            self._send(200, (HERE / "samples" / "rfp-santa.md").read_bytes(), "text/plain; charset=utf-8")
         elif self.path == "/api/roster":
             self._send(200, json.dumps(roster(), ensure_ascii=False).encode(), "application/json")
         else:
