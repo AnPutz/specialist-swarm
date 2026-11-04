@@ -90,7 +90,8 @@ button:disabled{opacity:.5;cursor:default}
     <textarea id="rfp" placeholder="RFP hier einfügen oder Datei (.md/.txt) hochladen …"></textarea>
     <div class="row">
       <label class="btn">Datei hochladen<input id="file" type="file" accept=".md,.txt,.markdown,text/plain" hidden></label>
-      <button id="sample">Beispiel: Weihnachtsmann</button>
+      <button class="sample" data-sample="wunschzettel">Beispiel: Wunschzettel</button>
+      <button class="sample" data-sample="kinder">Beispiel: Kinder</button>
     </div>
     <button id="go" class="primary">Angebot erstellen lassen</button>
     <div id="phase"></div>
@@ -244,7 +245,9 @@ async function run(){
 }
 
 $('#go').onclick = run;
-$('#sample').onclick = async () => { $('#rfp').value = await (await fetch('/api/sample')).text(); };
+document.querySelectorAll('.sample').forEach(b => b.onclick = async () => {
+  $('#rfp').value = await (await fetch('/api/sample?name=' + encodeURIComponent(b.dataset.sample))).text();
+});
 $('#file').onchange = async e => { const f = e.target.files[0]; if (f) $('#rfp').value = await f.text(); };
 $('#dl').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([finalMd], {type: 'text/markdown'})); a.download = 'Angebot-Wichtel.md'; a.click(); };
 $('#pdf').onclick = () => { const w = open(''); w.document.write(`<html><head><title>Angebot Wichtel GmbH & Co. KG</title><style>body{font:12pt/1.55 Georgia,serif;max-width:760px;margin:40px auto;color:#1d2433}h1{color:#c8323c}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:4px 8px}</style></head><body>${$('#doc').innerHTML}</body></html>`); w.document.close(); w.print(); };
