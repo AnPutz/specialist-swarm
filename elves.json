@@ -1,0 +1,44 @@
+{
+  "rfp_aspekte": [
+    "Routenplanung",
+    "Arbeitsrecht",
+    "Flottentechnik",
+    "Kalkulation",
+    "Risiko und Ausfall",
+    "Vertrag und SLA",
+    "Angebotstext",
+    "Wettbewerbsanalyse"
+  ],
+  "wichtel": [
+    {
+      "name": "Rudi Routenfuchs",
+      "rolle": "Logistik-Planer",
+      "faehigkeiten": ["Routenplanung", "Risiko und Ausfall"]
+    },
+    {
+      "name": "Paragraphus",
+      "rolle": "Rechtswichtel",
+      "faehigkeiten": ["Arbeitsrecht", "Vertrag und SLA"]
+    },
+    {
+      "name": "Schrauber Sepp",
+      "rolle": "Flotten-Ingenieur",
+      "faehigkeiten": ["Flottentechnik", "Risiko und Ausfall"]
+    },
+    {
+      "name": "Zimtstern",
+      "rolle": "Finanzwichtel",
+      "faehigkeiten": ["Kalkulation"]
+    },
+    {
+      "name": "Feder Fine",
+      "rolle": "Bid-Autorin",
+      "faehigkeiten": ["Angebotstext", "Wettbewerbsanalyse", "Vertrag und SLA"]
+    },
+    {
+      "name": "Späher Spekulatius",
+      "rolle": "Marktbeobachter",
+      "faehigkeiten": ["Wettbewerbsanalyse"]
+    }
+  ]
+}
