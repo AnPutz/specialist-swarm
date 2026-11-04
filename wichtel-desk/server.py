@@ -40,7 +40,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/api/run":
             return self._send(404, b"not found", "text/plain")
         length = int(self.headers.get("Content-Length") or 0)
-        rfp = (json.loads(self.rfile.read(length) or b"{}").get("rfp") or "").strip()[:MAX_RFP_CHARS]
+        try:
+            rfp = (json.loads(self.rfile.read(length) or b"{}").get("rfp") or "").strip()[:MAX_RFP_CHARS]
+        except (ValueError, AttributeError):
+            return self._send(400, b"invalid json", "text/plain")
         if not rfp:
             return self._send(400, b"empty rfp", "text/plain")
 
