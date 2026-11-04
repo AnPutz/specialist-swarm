@@ -6,6 +6,7 @@ const path = require("path");
 
 const file = process.argv[2] || path.join(__dirname, "elves.json");
 const MAX = 3;
+const MAX_POOL = 9999;
 const errors = [];
 const err = (m) => errors.push(m);
 
@@ -21,6 +22,7 @@ const aspekte = Array.isArray(d.rfp_aspekte) ? d.rfp_aspekte : [];
 const wichtel = Array.isArray(d.wichtel) ? d.wichtel : [];
 if (!aspekte.length) err("rfp_aspekte fehlt oder ist leer");
 if (!wichtel.length) err("wichtel fehlt oder ist leer");
+if (wichtel.length > MAX_POOL) err(`${wichtel.length} Wichtel (Pool-Maximum ${MAX_POOL})`);
 
 const covered = new Set();
 const names = new Set();
